@@ -1,0 +1,21 @@
+<h3>Edit Volunteer:</h3>
+
+<div class="form">
+  <form action="/volunteers/<%= @volunteer.id %>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <label for="fname">Name:</label>
+    <input type="text" id="name" name="name" value="<%= @volunteer.name %>">
+    <br><br>
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" value="<%= @volunteer.phone %>">
+    <br><br>
+    <!--<label for="phone">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password..">
+    <br><br> -->
+    <label for="is_admin">Is Admin?:</label>
+    <input type="checkbox" id="is_admin" name="is_admin" <%if @volunteer.is_admin%> checked <%end%>>
+    <br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
