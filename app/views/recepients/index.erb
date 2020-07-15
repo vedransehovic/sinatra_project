@@ -1,0 +1,28 @@
+<center>
+<a href="/recepients/new">New Recepient</a>
+<table style="width:75%"  border='1px'>
+    <tr>
+        <th colspan="4"><h3><b>Recepients:</b> </h3></th>
+    </tr>
+     <tr>
+        <th><b>Name</b></th>
+        <th><b>Address</b></th>
+        <th><b>Municipality</b></th>
+        <th><b>Phone</b></th>
+    </tr>
+    <% @recepients.each do |recepient| %>
+    <tr>
+        <td><%= recepient.name %> <a href="/recepients/<%= recepient.id %>/edit">edit</a>
+            <form action="/volunteers/<%= recepient.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">Delete</button>
+ </form>
+        </td>
+        <td><%= recepient.address %></td>
+        <td><%= recepient.municipality %></td>
+        <td><%= recepient.phone %></td>
+    </tr>
+    <% end %>
+</table>
+<a href="/recepients/new">New Recepient</a>
+</center>
