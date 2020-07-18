@@ -1,0 +1,23 @@
+<center>
+<a href="/deliveries/new">New Delivery</a>
+<table style="width:75%"  border='1px'>
+    <tr>
+        <th colspan="4"><h3><b>Recepients:</b> </h3></th>
+    </tr>
+     <tr>
+        <th><b>Date:</b></th>
+        <th><b>Task:</b></th>
+        <th><b>Recepient:</b></th>
+        <th><b>Volunteer:</b></th>
+    </tr>
+    <% @deliveries.each do |delivery| %>
+    <tr>
+        <td><%= delivery.date %></td>
+        <td><a href="/deliveries/<%= delivery.id %>"><%= delivery.task %></a></td>
+        <td><%= delivery.recepient.name %></td>
+        <td><%= delivery.volunteer.name %></td>
+    </tr>
+    <% end %>
+
+</table>
+</center>

@@ -6,6 +6,7 @@ end
 
 use Rack::MethodOverride #needed to use patch, put or delete
 
+use DeliveryController
 use RecepientController
 use VolunteerController
 run ApplicationController

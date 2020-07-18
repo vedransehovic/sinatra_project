@@ -13,10 +13,10 @@
     <% @recepients.each do |recepient| %>
     <tr>
         <td><%= recepient.name %> <a href="/recepients/<%= recepient.id %>/edit">edit</a>
-            <form action="/volunteers/<%= recepient.id %>" method="post">
+            <form action="/recepients/<%= recepient.id %>" method="post">
             <input type="hidden" name="_method" value="delete">
             <button type="submit">Delete</button>
- </form>
+            </form>
         </td>
         <td><%= recepient.address %></td>
         <td><%= recepient.municipality %></td>

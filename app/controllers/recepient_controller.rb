@@ -10,32 +10,33 @@ class RecepientController < ApplicationController
 
     get '/recepients/new' do
         #view
-        erb :'volunteers/new'
+        erb :'recepients/new'
     end
 
     post '/recepients/new' do
-        Volunteer.create(params)
-        redirect '/volunteers'
+        Recepient.create(params)
+        redirect '/recepients'
     end
 
     get '/recepients/:id/edit' do
-        @volunteer=Volunteer.find_by_id(params[:id])
+        @recepient=Recepient.find_by_id(params[:id])
         #view
-        erb :'volunteers/edit'
+        erb :'recepients/edit'
     end
 
     patch '/recepients/:id' do
-        volunteer = Volunteer.find_by_id(params[:id])
-        volunteer.name = params[:name]
-        volunteer.phone = params[:phone]
-        volunteer.is_admin = params[:is_admin]
-        volunteer.save
+        recepient = Recepient.find_by_id(params[:id])
+        recepient.name = params[:name]
+        recepient.address = params[:address]
+        recepient.municipality = params[:municipality]
+        recepient.phone = params[:phone]
+        recepient.save
         #view
         redirect '/recepients'
     end
 
     delete '/recepients/:id' do
-        Volunteer.delete(params[:id])
+        Recepient.delete(params[:id])
         redirect '/recepients'
     end
 end

@@ -1,19 +1,26 @@
-<h3>Edit Volunteer:</h3>
+<h3>Edit Recepient:</h3>
 
 <div class="form">
-  <form action="/volunteers/<%= @volunteer.id %>" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="PATCH">
-    <label for="fname">Name:</label>
-    <input type="text" id="name" name="name" value="<%= @volunteer.name %>">
+  <form action="/recepients/<%= @recepient.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="<%= @recepient.name %>">
     <br><br>
-    <label for="phone">Phone Number:</label>
-    <input type="text" id="phone" name="phone" value="<%= @volunteer.phone %>">
+    <label for="address">Address:</label>
+    <input type="text" name="address" value="<%= @recepient.address %>">
     <br><br>
-    <!--<label for="phone">Password:</label>
-    <input type="password" id="password" name="password" placeholder="Password..">
-    <br><br> -->
-    <label for="is_admin">Is Admin?:</label>
-    <input type="checkbox" id="is_admin" name="is_admin" <%if @volunteer.is_admin%> checked <%end%>>
+    <label for="phone">Telephone Number:</label>
+    <input type="text"  name="phone" value="<%= @recepient.phone %>">
+    <br><br> 
+    <label for="is_admin">Municipality:</label>
+    <select name="municipality">
+      <option value="Center City" <% if @recepient.municipality == "Center City"%><%= "selected" %><%end%>>Center City</option>
+      <option value="Old Town" <% if @recepient.municipality == "Old Town"%><%= "selected" %><%end%>>Old Town</option>
+      <option value="New Town" <% if @recepient.municipality == "New Town"%><%= "selected" %><%end%> >New Town</option>
+      <option value="New Sarajevo" <% if @recepient.municipality == "New Sarajevo"%><%= "selected" %><%end%>>New Sarajevo</option>
+      <option value="Ilidza" <% if @recepient.municipality == "Ilidza"%><%= "selected" %><%end%>>Ilidza</option>
+      <option value="Other" <% if @recepient.municipality == "Other"%><%= "selected" %><%end%>>Other</option>
+    </select>
     <br><br>
 
     <input type="submit" value="Submit">

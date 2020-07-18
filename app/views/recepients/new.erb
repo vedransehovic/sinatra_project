@@ -1,19 +1,26 @@
-<h3>New Volunteer:</h3>
+<h3>New Recepient:</h3>
 
 <div class="form">
-  <form action="/volunteers/new" method="POST">
+  <form action="/recepients/new" method="POST">
     <label for="fname">Name:</label>
-    <input type="text" id="name" name="name" placeholder="Volunteer name..">
+    <input type="text"name="name" placeholder="Recepient Name..">
+    <br><br>
+    <label for="address">Address:</label>
+    <input type="text" name="address" placeholder="Recepient Address..">
     <br><br>
     <label for="phone">Phone Number:</label>
-    <input type="text" id="phone" name="phone" placeholder="Volunteer Phone Number..">
+    <input type="text" name="phone" placeholder="Recepient Phone Number..">
     <br><br>
-    <!--<label for="phone">Password:</label>
-    <input type="password" id="password" name="password" placeholder="Password..">
-    <br><br> -->
-    <label for="is_admin">Is Admin?:</label>
-    <input type="checkbox" id="is_admin" name="is_admin">
-    <br><br>
+    <label for="municipality">Municipality:</label>
+    <select name="municipality">
+      <option value="Center City">Center City</option>
+      <option value="Old Town">Old Town</option>
+      <option value="New Town">New Town</option>
+      <option value="New Sarajevo">New Sarajevo</option>
+      <option value="Ilidza">Ilidza</option>
+      <option value="Other">Other</option>
+    </select>
+
 
     <input type="submit" value="Submit">
   </form>
