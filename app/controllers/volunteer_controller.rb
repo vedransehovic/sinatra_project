@@ -15,7 +15,6 @@ class VolunteerController < ApplicationController
 
     post '/volunteers/new' do
         volunteer = Volunteer.create(params)
-        session[:volunteer_id]=volunteer.id
         redirect '/volunteers'
     end
 

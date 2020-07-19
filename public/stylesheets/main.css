@@ -8,9 +8,11 @@ body {
 .header {
   background-color: #4CAF50;
   height: 100px;
-  text-align: center;
   color: white;
-  padding: 1px;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.875em;
 }
 .container div {
   padding: 1%;
