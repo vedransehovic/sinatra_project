@@ -14,8 +14,24 @@ class VolunteerController < ApplicationController
     end
 
     post '/volunteers/new' do
-        Volunteer.create(params)
+        volunteer = Volunteer.create(params)
+        session[:volunteer_id]=volunteer.id
         redirect '/volunteers'
+    end
+
+    get '/volunteers/login' do
+        #view
+        erb :'volunteers/login'
+    end
+
+    post '/volunteers/login' do
+        volunteer = Volunteer.find_by(email: params[:email])
+        if volunteer && volunteer.authenticate(params[:password])
+            session[:volunteer_id] = volunteer.id
+            redirect to '/deliveries'
+        else
+            erb :'volunteers/login'
+        end
     end
 
     get '/volunteers/:id/edit' do
@@ -37,5 +53,10 @@ class VolunteerController < ApplicationController
     delete '/volunteers/:id' do
         Volunteer.delete(params[:id])
         redirect '/volunteers'
+    end
+
+    get '/volunteers/logout' do
+        session.clear
+        redirect '/deliveries'
     end
 end

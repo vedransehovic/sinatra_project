@@ -3,6 +3,41 @@ body {
   font-family: sans-serif;
 }
 
+/*================== COLUMNS =============*/
+
+.header {
+  background-color: #4CAF50;
+  height: 100px;
+  text-align: center;
+  color: white;
+  padding: 1px;
+}
+.container div {
+  padding: 1%;
+  box-sizing: border-box;
+  min-height: 500px;
+}
+.left-col {
+  background-color: #f4f4f4;
+  width: 20%;
+  float: left;
+  color: #3a3a3a;
+  border-radius: 5px;
+}
+.center-col {
+/*          background-color: pink; */
+  width: 80%;
+  float: left;
+}
+.footer {
+  clear: both;
+  background-color: #4CAF50;
+  text-align: center;
+  height: 50px;
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
 /* ================= FORM ============== */
 
 
@@ -42,4 +77,29 @@ input[type=submit] {
   padding: 20px;
   width: 90%;
   margin: auto;
+}
+
+/*================================== TABLE ========================*/
+
+#maintable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#maintable td, #maintable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#maintable tr:nth-child(even){background-color: #f2f2f2;}
+
+#maintable tr:hover {background-color: #ddd;}
+
+#maintable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }

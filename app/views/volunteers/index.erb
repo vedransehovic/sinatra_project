@@ -1,12 +1,8 @@
-<center><table style="width:75%"  border='1px'>
-    <tr>
-        <th><h3><b>VOLUNTEERS:</b> </h3></th>
-        <th></th>
-        <th></th>
-    </tr>
+<table id="maintable">
      <tr>
         <th><b>Name</b></th>
         <th><b>Phone</b></th>
+         <th><b>Email</b></th>
         <th><b>Admin</b></th>
     </tr>
     <% @volunteers.each do |volunteer| %>
@@ -18,9 +14,8 @@
  </form>
         </td>
         <td><%= volunteer.phone %></td>
+        <td><%= volunteer.email %></td>
         <td><%= volunteer.is_admin %></td>
     </tr>
     <% end %>
 </table>
-<a href="/volunteers/new">New Volunteer</a>
-</center>

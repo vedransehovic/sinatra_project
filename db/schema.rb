@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200710183613) do
+ActiveRecord::Schema.define(version: 20200719210017) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string  "task"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20200710183613) do
     t.string  "name"
     t.string  "phone"
     t.boolean "is_admin"
+    t.text    "password_digest"
+    t.text    "email"
   end
 
 end

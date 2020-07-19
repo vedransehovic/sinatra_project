@@ -2,7 +2,7 @@ require './config/environment'
 
 class DeliveryController < ApplicationController
     get '/deliveries' do
-        @deliveries = Delivery.all 
+        @deliveries = Delivery.all.order("date DESC")
         #view
         erb :'deliveries/index'
     end
@@ -15,7 +15,6 @@ class DeliveryController < ApplicationController
     end
 
     post '/deliveries/new/recepient' do
-        @today = DateTime.now.strftime("%Y-%m-%d")  #setting today's date as default calendar value
         @volunteers = Volunteer.all #selecting all volunteers for populating the pulldown
         if params[:lookup] != ''
             @recepients = Recepient.search(params[:lookup]) #looking up recepients
