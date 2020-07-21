@@ -27,7 +27,7 @@ class DeliveryController < ApplicationController
     end
 
     post '/deliveries' do
-        if is_logged_in?(session)
+        if is_logged_in?
             Delivery.create(params)
             #view
             redirect to '/deliveries'
@@ -45,7 +45,7 @@ class DeliveryController < ApplicationController
 
 
     get '/deliveries/:id/edit' do
-        if is_logged_in?(session)
+        if is_logged_in?
             @delivery=Delivery.find_by_id(params[:id])
             @volunteers=Volunteer.all
             #view
@@ -57,7 +57,7 @@ class DeliveryController < ApplicationController
     end
 
     patch '/deliveries/:id' do
-        if is_logged_in?(session)
+        if is_logged_in?
             delivery = Delivery.find_by_id(params[:id])
             delivery.task = params[:task]
             delivery.date = params[:date]

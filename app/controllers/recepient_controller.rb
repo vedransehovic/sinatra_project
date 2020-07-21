@@ -2,7 +2,7 @@ require './config/environment'
 
 class RecepientController < ApplicationController
     get '/recepients' do
-        if is_logged_in?(session)
+        if is_logged_in?
             @recepients = Recepient.all
             #view
             erb :'recepients/index'
@@ -13,7 +13,7 @@ class RecepientController < ApplicationController
     end
 
     get '/recepients/new' do
-        if is_logged_in?(session)
+        if is_logged_in?
         #view
         erb :'recepients/new'
         else
@@ -23,7 +23,7 @@ class RecepientController < ApplicationController
     end
 
     post '/recepients' do
-        if is_logged_in?(session)
+        if is_logged_in?
             Recepient.create(params)
             redirect '/recepients'
         else
@@ -33,7 +33,7 @@ class RecepientController < ApplicationController
     end
 
     get '/recepients/:id/edit' do
-        if is_logged_in?(session)
+        if is_logged_in?
             @recepient=Recepient.find_by_id(params[:id])
             #view
             erb :'recepients/edit'
@@ -44,7 +44,7 @@ class RecepientController < ApplicationController
     end
 
     patch '/recepients/:id' do
-        if is_logged_in?(session)
+        if is_logged_in?
             recepient = Recepient.find_by_id(params[:id])
             recepient.name = params[:name]
             recepient.address = params[:address]
@@ -60,7 +60,7 @@ class RecepientController < ApplicationController
     end
 
     delete '/recepients/:id' do
-        if is_logged_in?(session) && is_admin?(session)
+        if is_logged_in? && is_admin?
             Recepient.delete(params[:id])
             redirect '/recepients'
         else

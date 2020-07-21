@@ -14,15 +14,15 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def current_user(session)
+    def current_user
         Volunteer.find_by_id(session[:volunteer_id])
     end
 
-    def is_logged_in?(session)
+    def is_logged_in?
         !!session[:volunteer_id]
     end
 
-    def is_admin?(session)
+    def is_admin?
         volunteer = Volunteer.find_by_id(session[:volunteer_id])
         !!volunteer.is_admin
     end

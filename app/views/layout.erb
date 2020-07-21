@@ -19,15 +19,15 @@
 <div class="container">
     <div class="left-col">
     <!-- IF USER LOGGED IN SHOW MENU -->
-        <% if is_logged_in?(session) %>  
-        Hello, <%= current_user(session).name %>  <a href="/volunteers/logout">Logout</a>
+        <% if is_logged_in?%>  
+        Hello, <%= current_user.name %>  <a href="/volunteers/logout">Logout</a>
         <h2>Menu</h2>
         <h3><a href="/deliveries">View all deliveries</a></h3>
         <h3><a href="/recepients">View all recepients</a></h3>
         <h3><a href="/recepients/new">Create a recepient</a></h3>
         <h3><a href="/deliveries/new/recepient">Create a delivery</a></h3>
     <!-- IF USER IS ADMIN SHOW ADDITIONAL MENU OPTIONS -->
-        <% if is_admin?(session) %> 
+        <% if is_admin? %> 
         <br>
         <h2>Admin Menu</h2>
         <h3><a href="/volunteers">View all volunteers</a></h3>

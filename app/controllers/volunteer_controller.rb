@@ -2,7 +2,7 @@ require './config/environment'
 
 class VolunteerController < ApplicationController
     get '/volunteers' do
-        if is_logged_in?(session) && is_admin?(session)
+        if is_logged_in? && is_admin?
             @volunteers = Volunteer.all
             erb :'volunteers/index'
         else
@@ -12,7 +12,7 @@ class VolunteerController < ApplicationController
     end
 
     get '/volunteers/new' do
-        if is_logged_in?(session) && is_admin?(session)
+        if is_logged_in? && is_admin?
             erb :'volunteers/new'
         else
             @error_message = "Please log in as an admin"
@@ -21,7 +21,7 @@ class VolunteerController < ApplicationController
     end
 
     post '/volunteers' do
-        if is_logged_in?(session) && is_admin?(session)
+        if is_logged_in? && is_admin?
             volunteer = Volunteer.create(params)
             redirect '/volunteers'
         else
@@ -36,9 +36,9 @@ class VolunteerController < ApplicationController
     end
 
     post '/volunteers/login' do
-        volunteer = Volunteer.find_by(email: params[:email])
-        if volunteer && volunteer.authenticate(params[:password])
-            session[:volunteer_id] = volunteer.id
+        @volunteer = Volunteer.find_by(email: params[:email])
+        if @volunteer && @volunteer.authenticate(params[:password])
+            session[:volunteer_id] = @volunteer.id
             redirect to '/deliveries'
         else
             @error_message = "Invalid email or password, please try again!"
@@ -47,7 +47,7 @@ class VolunteerController < ApplicationController
     end
 
     get '/volunteers/:id/edit' do
-        if is_logged_in?(session) && is_admin?(session)
+        if is_logged_in? && is_admin?
             @volunteer=Volunteer.find_by_id(params[:id])
             #view
             erb :'volunteers/edit'        
@@ -58,16 +58,21 @@ class VolunteerController < ApplicationController
     end
 
     patch '/volunteers/:id' do
-        if is_logged_in?(session) && is_admin?(session)
-            volunteer = Volunteer.find_by_id(params[:id])
-            volunteer.name = params[:name]
-            volunteer.phone = params[:phone]
-            volunteer.email = params[:email]
-            volunteer.password = params[:password]
-            volunteer.is_admin = params[:is_admin]
-            volunteer.save
-            #view
-            redirect '/volunteers'
+        if is_logged_in? && is_admin?
+            @volunteer = Volunteer.find_by_id(params[:id])
+            @volunteer.name = params[:name]
+            @volunteer.phone = params[:phone]
+            @volunteer.email = params[:email]
+            @volunteer.password = params[:password]
+            @volunteer.is_admin = params[:is_admin]
+            @volunteer.save
+            if @volunteer.errors.full_messages != [] #if there are errors report them and repeat the process
+                @errors = @volunteer.errors.full_messages
+                erb :'volunteers/edit'
+            else
+                #view
+                redirect '/volunteers'
+            end
         else
             @error_message = "Please log in as an admin"
             erb :"volunteers/login"
@@ -75,7 +80,7 @@ class VolunteerController < ApplicationController
     end
 
     delete '/volunteers/:id' do
-        if is_logged_in?(session) && is_admin?(session)
+        if is_logged_in? && is_admin?
             Volunteer.delete(params[:id])
             redirect '/volunteers'
         else
