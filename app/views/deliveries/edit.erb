@@ -1,0 +1,25 @@
+<h3>Edit Delivery:</h3>
+
+<div class="form">
+  <form action="/deliveries/:id" method="POST">
+    <input type="hidden" name="method" value="_patch">
+    <label for="recepient_id">Recepient:</label>
+    <%= @delivery.recepient.name %>
+    <br><br>
+    <label for="volunteer_id">Volunteer:</label>
+    <select name="volunteer_id">
+        <% @volunteers.each do |volunteer| %>
+        <option value="<%= volunteer.id %>" <%if volunteer.id == @delivery.volunteer.id %>selected<%end%>><%= volunteer.name %></option>
+        <%end%>
+    </select>
+    <br><br>
+    <label for="date">Date:</label>
+    <input type="date" name="date" value="<%= @delivery.date %>">
+    <br><br>
+    <label for="task">Task:</label>
+    <input type="text" name="task" value="<%= @delivery.task %>">
+    <br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>

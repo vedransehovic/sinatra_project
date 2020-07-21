@@ -62,6 +62,8 @@ class VolunteerController < ApplicationController
             volunteer = Volunteer.find_by_id(params[:id])
             volunteer.name = params[:name]
             volunteer.phone = params[:phone]
+            volunteer.email = params[:email]
+            volunteer.password = params[:password]
             volunteer.is_admin = params[:is_admin]
             volunteer.save
             #view

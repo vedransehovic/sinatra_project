@@ -26,16 +26,50 @@ class DeliveryController < ApplicationController
         end
     end
 
-    post '/deliveries/new' do
-        Delivery.create(params)
-        #view
-        redirect to '/deliveries'
+    post '/deliveries' do
+        if is_logged_in?(session)
+            Delivery.create(params)
+            #view
+            redirect to '/deliveries'
+        else
+            @error_message = "Please log in to create a delivery!"
+            erb :"volunteers/login"
+        end 
     end
 
-    get '/deliveries/:id' do
+    get '/deliveries/:id' do  #not showing a delivery currently, delete if unused
         @delivery = Delivery.find_by_id(params[:id])
         #view
         erb :'deliveries/show'
+    end
+
+
+    get '/deliveries/:id/edit' do
+        if is_logged_in?(session)
+            @delivery=Delivery.find_by_id(params[:id])
+            @volunteers=Volunteer.all
+            #view
+            erb :'deliveries/edit'
+        else
+            @error_message = "Please log in to edit a recepient!"
+            erb :"volunteers/login"
+        end 
+    end
+
+    patch '/deliveries/:id' do
+        if is_logged_in?(session)
+            delivery = Delivery.find_by_id(params[:id])
+            delivery.task = params[:task]
+            delivery.date = params[:date]
+            delivery.recepient_id = params[:recepient_id]
+            delivery.volunteer_id = params[:volunteer_id]
+            delivery.save
+            #view
+            redirect '/deliveries'
+        else
+            @error_message = "Please log in to edit a delivery!"
+            erb :"volunteers/login"
+        end 
     end
 
 end
