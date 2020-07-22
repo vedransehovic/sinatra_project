@@ -1,3 +1,4 @@
+<font color="red"><%= @error_message %></font>
 <h1>Recepients:</h1>
 <table id="maintable">
      <tr>
@@ -9,10 +10,12 @@
     <% @recepients.each do |recepient| %>
     <tr>
         <td><%= recepient.name %> <a href="/recepients/<%= recepient.id %>/edit">edit</a>
+            <%if is_admin?%>
             <form action="/recepients/<%= recepient.id %>" method="post">
             <input type="hidden" name="_method" value="delete">
             <button type="submit">Delete</button>
             </form>
+            <%end%>
         </td>
         <td><%= recepient.address %></td>
         <td><%= recepient.municipality %></td>

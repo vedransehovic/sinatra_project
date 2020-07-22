@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -19,19 +20,23 @@
 <div class="container">
     <div class="left-col">
     <!-- IF USER LOGGED IN SHOW MENU -->
-        <% if is_logged_in?(session) %>  
-        Hello, <%= current_user(session).name %>  <a href="/volunteers/logout">Logout</a>
+        <% if is_logged_in?%>  
+        Hello, <%= current_user.name %>  <a href="/volunteers/logout">Logout</a>
         <h2>Menu</h2>
-        <h3><a href="/deliveries">View all deliveries</a></h3>
-        <h3><a href="/recepients">View all recepients</a></h3>
-        <h3><a href="/recepients/new">Create a recepient</a></h3>
-        <h3><a href="/deliveries/new/recepient">Create a delivery</a></h3>
+        <a href="/deliveries"><b>View all deliveries</b></a>
+        <br><br>
+        <a href="/recepients"><b>View all recepients</b></a>
+        <br><br>
+        <a href="/recepients/new"><b>Create a recepient</b></a>
+        <br><br>
+        <a href="/deliveries/new/recepient"><b>Create a delivery</b></a>
     <!-- IF USER IS ADMIN SHOW ADDITIONAL MENU OPTIONS -->
-        <% if is_admin?(session) %> 
-        <br>
+        <% if is_admin? %> 
+        <br><br>
         <h2>Admin Menu</h2>
-        <h3><a href="/volunteers">View all volunteers</a></h3>
-        <h3><a href="/volunteers/new">Create a volunteer</a></h3>
+        <a href="/volunteers"><b>View all volunteers</b></a>
+        <br><br>
+        <a href="/volunteers/new"><b>Create a volunteer</b></a>
         <%end %>
         <% else %>
     <!-- IF NOT SHOW LOGIN LINK -->

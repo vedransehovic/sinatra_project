@@ -5,8 +5,28 @@ body {
 
 .header-font {
   font-family: 'Caveat', cursive;
-  font-size: 42px;
+  font-size: 43px;
   color: white;
+}
+
+/* unvisited link */
+a:link {
+  color: #3b3b3b;
+}
+
+/* visited link */
+a:visited {
+  color: #3b3b3b;
+}
+
+/* mouse over link */
+a:hover {
+  color: #4CAF50;
+}
+
+/* selected link */
+a:active {
+  color: #4CAF50;
 }
 
 /*================== COLUMNS =============*/

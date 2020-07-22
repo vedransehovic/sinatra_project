@@ -1,7 +1,7 @@
 <h3>New Delivery:</h3>
 
 <div class="form">
-  <form action="/deliveries/new" method="POST">
+  <form action="/deliveries" method="POST">
     <label for="recepient_id">Recepient:</label>
     <% if @recepient %>
         <input type="hidden" name="recepient_id" value="<%= @recepient.id %>">
