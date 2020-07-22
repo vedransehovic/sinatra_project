@@ -2,13 +2,7 @@ require './config/environment'
 
 class RecepientController < ApplicationController
     get '/recepients' do
-        # if searching to create new delivery
-        #find recipients
-        #render delivery/new with recipients
-        @recepients = Recepient.all
-
-        #view
-        erb :'recepients/index'
+     #if query @recipients = Recipient.search(query)
         if is_logged_in?
             @recepients = Recepient.all
             #view
@@ -30,18 +24,20 @@ class RecepientController < ApplicationController
     end
 
     post '/recepients/new' do
-      
-        Recepient.create(params)
-        # r= Recepient.new(params)
-        #if r.save
-        # redirect as normal
-        #else 
-        #def error(r.errors.full_messages) and rerender form
+        r= Recepient.new(params)
+        if r.save
+            redirect '/recepeints'
+        else 
+            @error = (r.errors.full_messages)
+            erb :'/recepients/new'
+        end
 
-        # make a check to determine redirect
+    # make a check to determine redirect
         # if creating new delivery
         # redirect recipients/:recipient_id/deliveries/new
-        redirect '/recepients'
+        #redirect '/recepients'
+    end
+
     post '/recepients' do
         if is_logged_in?
             Recepient.create(params)

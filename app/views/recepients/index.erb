@@ -9,7 +9,7 @@
     </tr>
     <% @recepients.each do |recepient| %>
     <tr>
-        <td><%= recepient.name %> <a href="/recepients/<%= recepient.id %>/edit">edit</a>
+        <td><%= recepient.name %> <a href="/recepients/<%= recepient.id %>/edit">edit</a> <a href="recipients/<%=recipient.id%>/deliveries/new">Create Delivery</a>
             <%if is_admin?%>
             <form action="/recepients/<%= recepient.id %>" method="post">
             <input type="hidden" name="_method" value="delete">

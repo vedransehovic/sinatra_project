@@ -1,14 +1,17 @@
 <h3>Recepient:</h3>
 
 <div class="form">
-  <form action="/deliveries/new/recepient" method="POST">
+  <form action="/recepients" method="GET">
     <label for="lookup">Lookup exisiting recepient:</label>
     <input type="text" name="lookup" placeholder="Lookup exisitng recepient here...">
     <br><br>
     <input type="submit" value="Submit">
     <br><br>
+  </form>
     Create New Recepient:
+  <form action="/recepients/new" method="POST">
     <br><br>
+    <input type="hidden" name="origin_check" value="from_delivery">
     <label for="name">Recepient name:</label>
     <input type="text" name="name" placeholder="Recepient Name..">
     <br><br>
