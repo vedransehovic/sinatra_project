@@ -37,13 +37,6 @@ class DeliveryController < ApplicationController
         end 
     end
 
-    get '/deliveries/:id' do  #not showing a delivery currently, delete if unused
-        @delivery = Delivery.find_by_id(params[:id])
-        #view
-        erb :'deliveries/show'
-    end
-
-
     get '/deliveries/:id/edit' do
         if is_logged_in?
             @delivery=Delivery.find_by_id(params[:id])
@@ -70,6 +63,16 @@ class DeliveryController < ApplicationController
             @error_message = "Please log in to edit a delivery!"
             erb :"volunteers/login"
         end 
+    end
+
+    delete '/deliveries/:id' do
+        if is_logged_in? && is_admin?
+            Delivery.delete(params[:id])
+            redirect '/deliveries'
+        else
+            @error_message = "Please log in as an admin"
+            erb :"volunteers/login"
+        end  
     end
 
 end
