@@ -1,7 +1,7 @@
 <h3>Edit Delivery:</h3>
 
 <div class="form">
-  <form action="/deliveries/:id" method="POST">
+  <form action="/deliveries/<%= @delivery.id %>" method="POST">
     <input type="hidden" name="method" value="_patch">
     <label for="recepient_id">Recepient:</label>
     <%= @delivery.recepient.name %>
