@@ -2,6 +2,9 @@ require './config/environment'
 
 class RecepientController < ApplicationController
     get '/recepients' do
+        # if searching to create new delivery
+        #find recipients
+        #render delivery/new with recipients
         @recepients = Recepient.all
 
         #view
@@ -14,7 +17,17 @@ class RecepientController < ApplicationController
     end
 
     post '/recepients/new' do
+      
         Recepient.create(params)
+        # r= Recepient.new(params)
+        #if r.save
+        # redirect as normal
+        #else 
+        #def error(r.errors.full_messages) and rerender form
+
+        # make a check to determine redirect
+        # if creating new delivery
+        # redirect recipients/:recipient_id/deliveries/new
         redirect '/recepients'
     end
 

@@ -10,9 +10,19 @@
     <% @deliveries.each do |delivery| %>
     <tr>
         <td><%= delivery.date %></td>
-        <td><a href="/deliveries/<%= delivery.id %>"><%= delivery.task %></a></td>
+        <td><%= delivery.task %>
+        <% if is_logged_in?(session) %>
+            <a href="/deliveries/edit">edit</a>
+        <%end%>
+        </td>
+    <!-- if user is logged in show recepient and volunteer -->
+        <% if is_logged_in?(session) %>
         <td><%= delivery.recepient.name %></td>
         <td><%= delivery.volunteer.name %></td>
+        <% else %>
+        <td>xxxxxxxxxxxx</td>
+        <td>xxxxxxxxxxxxx</td>
+        <%end%>
     </tr>
     <% end %>
 
