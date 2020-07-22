@@ -22,8 +22,14 @@ class VolunteerController < ApplicationController
 
     post '/volunteers' do
         if is_logged_in? && is_admin?
-            volunteer = Volunteer.create(params)
-            redirect '/volunteers'
+            @volunteer = Volunteer.new(params)
+            if !@volunteer.save #if there are errors report them and repeat the process
+                @errors = @volunteer.errors.full_messages
+                erb :'volunteers/new'
+            else
+                #view
+                redirect '/volunteers'
+            end
         else
             @error_message = "Please log in as an admin"
             erb :"volunteers/login"
@@ -60,13 +66,8 @@ class VolunteerController < ApplicationController
     patch '/volunteers/:id' do
         if is_logged_in? && is_admin?
             @volunteer = Volunteer.find_by_id(params[:id])
-            @volunteer.name = params[:name]
-            @volunteer.phone = params[:phone]
-            @volunteer.email = params[:email]
-            @volunteer.password = params[:password]
-            @volunteer.is_admin = params[:is_admin]
-            @volunteer.save
-            if @volunteer.errors.full_messages != [] #if there are errors report them and repeat the process
+            params.delete(:_method) #had to delete this so I could run .update(params) on the next line. 
+            if !@volunteer.update(params) #if there are errors report them and repeat the process
                 @errors = @volunteer.errors.full_messages
                 erb :'volunteers/edit'
             else

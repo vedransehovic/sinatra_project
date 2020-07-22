@@ -5,4 +5,7 @@ class Recepient < ActiveRecord::Base
     def self.search(query)
         Recepient.where('name LIKE ?', "%#{query}%")
     end
+
+    validates :name, presence: true
+    validates :address, presence: true
 end 
