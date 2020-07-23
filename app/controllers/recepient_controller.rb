@@ -34,11 +34,7 @@ class RecepientController < ApplicationController
             end 
             @recepient = Recepient.new(params)
             if @recepient.save
-                if @new_delivery
-                    redirect "recepients/#{@recepient.id}/deliveries/new"
-                else
-                    redirect '/recepients'
-                end
+                @new_delivery ? redirect "recepients/#{@recepient.id}/deliveries/new" : redirect '/recepients'
             else 
                 @error = (@recepient.errors.full_messages)
                 erb :'/recepients/new'
