@@ -58,19 +58,21 @@ class DeliveryController < ApplicationController
     end
 
     post '/deliveries/:id/complete' do
-        delivery=Delivery.find_by_id(params[:id])
-        delivery.update(completed: params[:completed])
-        redirect '/deliveries'
+        if is_logged_in?
+            delivery=Delivery.find_by_id(params[:id])
+            delivery.update(completed: params[:completed])
+            redirect '/deliveries'
+        else
+            @error_message = "Please log in to edit a delivery!"
+            erb :"volunteers/login"
+        end 
     end
 
     patch '/deliveries/:id' do
         if is_logged_in?
             delivery = Delivery.find_by_id(params[:id])
-            delivery.task = params[:task]
-            delivery.date = params[:date]
-            delivery.recepient_id = params[:recepient_id]
-            delivery.volunteer_id = params[:volunteer_id]
-            delivery.save
+            params.delete(:_method)
+            delivery.update(params)
             #view
             redirect '/deliveries'
         else
