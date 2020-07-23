@@ -60,9 +60,14 @@ class RecepientController < ApplicationController
     end
 
     get '/recepients/:id/deliveries/new' do
-        @recepient = Recepient.find_by_id(params[:id])
-        @volunteers = Volunteer.all
-        erb :'deliveries/new'
+        if is_logged_in?
+            @recepient = Recepient.find_by_id(params[:id])
+            @volunteers = Volunteer.all
+            erb :'deliveries/new'
+        else
+            @error_message = "Please log in to create a new delivery!"
+            erb :"volunteers/login"
+        end 
     end
 
     get '/recepients/:id/edit' do
