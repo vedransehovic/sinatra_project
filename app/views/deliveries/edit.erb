@@ -8,11 +8,15 @@
     <%= @delivery.recepient.name %>
     <br><br>
     <label for="volunteer_id">Volunteer:</label>
+    <% if is_admin? %>
     <select name="volunteer_id">
         <% @volunteers.each do |volunteer| %>
-        <option value="<%= volunteer.id %>" <%if volunteer.id == @delivery.volunteer.id %>selected<%end%>><%= volunteer.name %></option>
+        <option value="<%= volunteer.id %>" <% if volunteer.id == @delivery.volunteer.id %>selected<%end%>><%= volunteer.name %></option>
         <%end%>
     </select>
+    <%else%>
+    <%= @delivery.volunteer.name %>
+    <%end%>
     <br><br>
     <label for="date">Date:</label>
     <input type="date" name="date" value="<%= @delivery.date %>">
@@ -24,7 +28,7 @@
     <input type="submit" value="Submit">
   </form>
   <form action="/deliveries/<%= @delivery.id %>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_method" value="delete">
     <input type="submit" value="DELETE">
 
   </form>

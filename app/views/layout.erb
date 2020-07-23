@@ -8,8 +8,8 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;1,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -23,7 +23,9 @@
         <% if is_logged_in?%>  
         Hello, <%= current_user.name %>  <a href="/volunteers/logout">Logout</a>
         <h2>Menu</h2>
-        <a href="/deliveries"><b>View all deliveries</b></a>
+        <a href="/deliveries"><b>View active deliveries</b></a>
+        <br><br>
+        <a href="/deliveries/all"><b>View all deliveries</b></a>
         <br><br>
         <a href="/recepients"><b>View all recepients</b></a>
         <br><br>

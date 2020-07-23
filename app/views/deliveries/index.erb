@@ -1,11 +1,15 @@
-
-<h1>Deliveries:</h1>
+<% if @active %>
+    <h1>Active Deliveries Dashboard:</h1>
+<% else %>
+    <h1>All Deliveries:</h1>
+<% end %>
 <table id="maintable">
      <tr>
         <th><b>Date:</b></th>
         <th><b>Task:</b></th>
         <th><b>Recepient:</b></th>
         <th><b>Volunteer:</b></th>
+        <th><b>Completed:</b></th>
     </tr>
     <% @deliveries.each do |delivery| %>
     <tr>
@@ -14,9 +18,11 @@
         <% if is_logged_in? %>
         <td><%if delivery.recepient%><%= delivery.recepient.name %><% end %></td>
         <td><%= delivery.volunteer.name %></td>
+        <td><form action="/deliveries/<%=delivery.id%>/complete" method="POST"><input type="checkbox" name="completed" onChange="this.form.submit()" <% if delivery.completed %>checked<%end%>></form></td>
         <% else %>
         <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
         <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
+        <td>x</td>
         <% end %>
     </tr>
     <% end %>

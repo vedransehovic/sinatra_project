@@ -16,11 +16,16 @@
     <%end%>
     <br><br>
     <label for="volunteer_id">Volunteer:</label>
+    <% if is_admin? %>
     <select name="volunteer_id">
         <% @volunteers.each do |volunteer| %>
         <option value="<%= volunteer.id %>"><%= volunteer.name %></option>
         <%end%>
     </select>
+    <%else%>
+        <input type="hidden" name="volunteer_id" value="<%=current_user.id%>">
+        <%=current_user.name%>
+    <%end%>
     <br><br>
     <label for="date">Date:</label>
     <input type="date" name="date">
