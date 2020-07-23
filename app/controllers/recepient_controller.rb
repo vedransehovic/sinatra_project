@@ -4,7 +4,11 @@ class RecepientController < ApplicationController
     get '/recepients' do
      #if query @recipients = Recipient.search(query)
         if is_logged_in?
-            @recepients = Recepient.all
+            if params[:lookup] #checking if recepient query exists (on delivery creation)
+                @recepients = Recepient.search(params[:lookup])
+            else 
+                @recepients = Recepient.all
+            end
             #view
             erb :'recepients/index'
         else
@@ -23,19 +27,26 @@ class RecepientController < ApplicationController
         end 
     end
 
-    post '/recepients/new' do
-        r= Recepient.new(params)
-        if r.save
-            redirect '/recepeints'
-        else 
-            @error = (r.errors.full_messages)
-            erb :'/recepients/new'
-        end
-
-    # make a check to determine redirect
-        # if creating new delivery
-        # redirect recipients/:recipient_id/deliveries/new
-        #redirect '/recepients'
+    post '/recepients/new' do #NEED HELP REFACTORING
+        if is_logged_in?
+            if params[:new_delivery_recepient] #checking if creation is initiated from new delivery form and if it is delete that paramter, assign it to a variable and proceed
+                @new_delivery=params.delete(:new_delivery_recepient)
+            end 
+            @recepient = Recepient.new(params)
+            if @recepient.save
+                if @new_delivery
+                    redirect "recepients/#{@recepient.id}/deliveries/new"
+                else
+                    redirect '/recepients'
+                end
+            else 
+                @error = (@recepient.errors.full_messages)
+                erb :'/recepients/new'
+            end
+        else
+            @error_message = "Please log in to create a recepient!"
+            erb :"volunteers/login"
+        end 
     end
 
     post '/recepients' do
@@ -46,6 +57,12 @@ class RecepientController < ApplicationController
             @error_message = "Please log in to create a recepient!"
             erb :"volunteers/login"
         end 
+    end
+
+    get '/recepients/:id/deliveries/new' do
+        @recepient = Recepient.find_by_id(params[:id])
+        @volunteers = Volunteer.all
+        erb :'deliveries/new'
     end
 
     get '/recepients/:id/edit' do

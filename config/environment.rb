@@ -1,8 +1,9 @@
+require 'dotenv/load' #loading dotenv gem for help with env SESSION_SECRET
+
 ENV['SINATRA_ENV'] ||= "development"
 
 require 'bundler/setup'
 Bundler.require(:default, ENV['SINATRA_ENV'])
-require 'securerandom' #to secure sessions
 
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
