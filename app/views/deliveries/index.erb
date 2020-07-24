@@ -18,7 +18,7 @@
         <% if is_logged_in? %>
         <td><%if delivery.recepient%><%= delivery.recepient.name %><% end %></td>
         <td><%= delivery.volunteer.name %></td>
-        <td><form action="/deliveries/<%=delivery.id%>/complete" method="POST"><input type="checkbox" name="completed" onChange="this.form.submit()" <% if delivery.completed %>checked<%end%>></form></td>
+        <td><form action="/deliveries/<%=delivery.id%>/complete" method="POST"><%if is_logged_in? && (current_user == delivery.volunteer || is_admin?)%><input type="checkbox" name="completed" onChange="this.form.submit()" <% if delivery.completed %>checked><%end%><%end%></form></td>
         <% else %>
         <td>xxxxxxxxxxxxxxxxxxxxxxx</td>
         <td>xxxxxxxxxxxxxxxxxxxxxxx</td>

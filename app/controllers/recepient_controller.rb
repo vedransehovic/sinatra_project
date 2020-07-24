@@ -34,13 +34,17 @@ class RecepientController < ApplicationController
             end 
             @recepient = Recepient.new(params)
             if @recepient.save
-                @new_delivery ? redirect "recepients/#{@recepient.id}/deliveries/new" : redirect '/recepients'
+                if @new_delivery  
+                    redirect "recepients/#{@recepient.id}/deliveries/new" 
+                else
+                    redirect '/recepients'
+                end
             else 
                 @error = (@recepient.errors.full_messages)
                 erb :'/recepients/new'
             end
         else
-            @error_message = "Please log in to create a recepient!"
+            @error_message = "Please log in to create a recepient !"
             erb :"volunteers/login"
         end 
     end
