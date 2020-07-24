@@ -33,7 +33,7 @@
         <br><br>
         <a href="/deliveries/new/recepient"><b>Create a delivery</b></a>
     <!-- IF USER IS ADMIN SHOW ADDITIONAL MENU OPTIONS -->
-        <% if is_admin? %> 
+        <% if is_logged_in? && is_admin? %> 
         <br><br>
         <h2>Admin Menu</h2>
         <a href="/volunteers"><b>View all volunteers</b></a>

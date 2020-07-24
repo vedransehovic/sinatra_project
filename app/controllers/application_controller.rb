@@ -27,10 +27,11 @@ class ApplicationController < Sinatra::Base
         !!volunteer.is_admin
     end
 
-    def not_logged_in?
-      unless logged_in?
-        @error_message = "Please log in to make changes."
-        erb :"volunteers/login"
+    def not_logged_in? (error_message)
+      unless is_logged_in?
+        session[:error_message] = error_message
+        redirect '/volunteers/login'
+        #erb :"volunteers/login"
       end
     end
 

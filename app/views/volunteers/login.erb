@@ -1,4 +1,8 @@
 <% if @error_message %><font color="red"><%= @error_message %></font> <% end %>
+<% if session[:error_message] %><font color="red"><%= session[:error_message] %></font> 
+<% session.delete(:error_message) #deletes error_message from session hash so it doesn't persist %> 
+<% end %>
+
 <h3>Login:</h3>
 
 <div class="form">

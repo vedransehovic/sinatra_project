@@ -10,7 +10,7 @@
     <% @recepients.each do |recepient| %>
     <tr>
         <td><%= recepient.name %> (<a href="/recepients/<%= recepient.id %>/edit">edit</a>) (<a href="recepients/<%=recepient.id%>/deliveries/new">create delivery</a>)
-            <%if is_admin?%>
+            <%if is_logged_in? && is_admin?%>
             <form action="/recepients/<%= recepient.id %>" method="post">
             <input type="hidden" name="_method" value="delete">
             <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
