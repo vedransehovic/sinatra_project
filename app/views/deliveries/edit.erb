@@ -4,9 +4,12 @@
   <form action="/deliveries/<%= @delivery.id %>" method="POST">
     <input type="hidden" name="_method" value="PATCH">
     <label for="recepient_id">Recepient:</label>
+    <%if @delivery.recepient%>
     <input type="hidden" name="recepient_id" value="<%= @delivery.recepient.id %>">
     <%= @delivery.recepient.name %>
+    <%end%>
     <br><br>
+    <%if @delivery.volunteer%>
     <label for="volunteer_id">Volunteer:</label>
     <% if is_admin? %>
     <select name="volunteer_id">
@@ -16,6 +19,7 @@
     </select>
     <%else%>
     <%= @delivery.volunteer.name %>
+    <%end%>
     <%end%>
     <br><br>
     <label for="date">Date:</label>
