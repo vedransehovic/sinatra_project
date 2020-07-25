@@ -1,14 +1,14 @@
 require './config/environment'
 
 class DeliveryController < ApplicationController
-    get '/deliveries' do
+    get '/deliveries' do #show active deliveries only
         @active = true
         @deliveries = Delivery.where(completed: nil).order("date DESC")
         #view
         erb :'deliveries/index'
     end
 
-    get '/deliveries/all' do
+    get '/deliveries/all' do #show all deliveries
         @deliveries = Delivery.all.order("date DESC")
         #view
         erb :'deliveries/index'
@@ -20,18 +20,6 @@ class DeliveryController < ApplicationController
         #view
         erb :'deliveries/new_delivery_recepient'
     end
-
-    # post '/deliveries/new/recepient' do
-    #     @volunteers = Volunteer.all #selecting all volunteers for populating the pulldown
-    #     if params[:lookup] != ''
-    #         @recepients = Recepient.search(params[:lookup]) #looking up recepients
-    #         #view
-    #         erb :'deliveries/new'
-    #     else
-    #         @recepient = Recepient.create(name: params[:name], address: params[:address], municipality: params[:municipality], phone: params[:phone])
-    #         erb :'deliveries/new'
-    #     end
-    # end
 
     post '/deliveries' do
         if is_logged_in?

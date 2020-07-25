@@ -4,5 +4,30 @@ Database schema consists of 3 tables: Recepients, Volunteers (users), and Delive
 
 - Session secret is written in .env file. It will be excluded from github via .gitignore file (it means that you will have to generate your own secret once you download the project. Create .env file and add a line of code that starts with SESSION_SECRET="" Your secret code should be between quotations.)
 
+- Once you download the project run "bundle install" to install all missing gems. 
+Gems included in this project are:
+- gem 'sinatra'
+- gem 'activerecord', '~> 4.2', '>= 4.2.6', :require => 'active_record'
+- gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+- gem 'rake'
+- gem 'require_all'
+- gem 'sqlite3', '~> 1.3.6'
+- gem 'thin'
+- gem 'shotgun'
+- gem 'pry'
+- gem 'bcrypt'
+- gem 'tux'
+- gem 'dotenv'
+- gem 'rspec'
+- gem 'capybara'
+- gem 'rack-test'
+- gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 
-- Database diagram is included in "notes" folder
+- When you have gems installed run "shotgun" in your terminal to start the local webserver and go to "localhost:9393" in your browser to run the project. 
+- To test Administrative privileges use following login:
+    U: admin@dot.com
+    P: password
+- To test regular user privileges use:
+    U: layla@gmail.com
+    P: password
+
