@@ -31,5 +31,5 @@ Gems included in this project are:
     U: layla@gmail.com
     P: password
 
-- Just a small change to readme to test the branch
+- This branch will be used to create charts for visualizing data. Chart I will use will be solution called Chartkick. 
 

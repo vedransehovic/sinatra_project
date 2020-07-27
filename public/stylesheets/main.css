@@ -9,6 +9,13 @@ body {
   color: white;
 }
 
+.total-runs {
+  font-family: 'Lato', sans-serif;
+  color: #3b3b3b;
+  font-weight: bold;
+  font-size: 35px;
+}
+
 h1, h2, h3 {
   font-family: 'Lato', sans-serif;
   color: #3b3b3b;

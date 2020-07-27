@@ -1,4 +1,5 @@
 require './config/environment'
+require 'chartkick'
 
 class ApplicationController < Sinatra::Base
 
@@ -10,7 +11,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    redirect '/deliveries'
+    @total_runs = Delivery.total_deliveries
+    @municipalities = Delivery.by_municipality
+    @dates = Delivery.by_date
+    #view
+    erb :'deliveries/charts'
+    #redirect '/deliveries'
   end
 
   helpers do

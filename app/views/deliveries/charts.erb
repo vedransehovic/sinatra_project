@@ -1,0 +1,7 @@
+Our volunteers have made: <span class="total-runs"><%= @total_runs %> </span>runs so far.
+<br><br>
+<%= column_chart(@municipalities, title: "Deliveries by Municipality", colors: ["#4CAF50"], opacity: 0.2) %>
+
+<%= pie_chart(@municipalities, title: "Percentage by Municipality") %>
+
+<%= line_chart(@dates, title: "Deliveries by Date (Trailing 10 days)", colors: ["#4CAF50"]) %>
