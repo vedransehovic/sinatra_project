@@ -92,6 +92,6 @@ class VolunteerController < ApplicationController
 
     get '/volunteers/logout' do
         session.clear
-        redirect '/deliveries'
+        redirect '/'
     end
 end

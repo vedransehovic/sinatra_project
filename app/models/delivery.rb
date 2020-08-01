@@ -14,7 +14,11 @@ class Delivery < ActiveRecord::Base
     end
 
     def self.total_deliveries #total nuamber of deliveries
-        Delivery.all.count
+        Delivery.where(completed: true).count
+    end
+
+    def self.active_deliveries #deliveries that have not been completed
+        self.where(completed: [false, nil]).count
     end
 
     #validates :volunteer_id, presence: true

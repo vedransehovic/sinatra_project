@@ -12,11 +12,9 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     @total_runs = Delivery.total_deliveries
-    @municipalities = Delivery.by_municipality
-    @dates = Delivery.by_date
+    @active_runs = Delivery.active_deliveries
     #view
-    erb :'deliveries/charts'
-    #redirect '/deliveries'
+    erb :'index'
   end
 
   helpers do

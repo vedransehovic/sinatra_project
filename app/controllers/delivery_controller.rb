@@ -80,4 +80,12 @@ class DeliveryController < ApplicationController
         end 
     end
 
+    get '/deliveries/stats' do
+        @total_runs = Delivery.total_deliveries
+        @municipalities = Delivery.by_municipality
+        @dates = Delivery.by_date
+        #view
+        erb :'deliveries/charts'
+    end
+
 end
