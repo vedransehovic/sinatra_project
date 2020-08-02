@@ -1,4 +1,4 @@
-Our volunteers have made: <span class="total-runs"><%= @total_runs %> </span>runs so far.
+Our volunteers have made: <span class="total-runs"><%= @total_runs %> </span>runs so far. There are currently <span class="total-runs"><%=@active_runs%></span> runs in progress.
 <br><br>
 <%= column_chart(@municipalities, title: "Deliveries by Municipality", colors: ["#4CAF50"], opacity: 0.2) %>
 

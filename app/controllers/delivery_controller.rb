@@ -82,6 +82,7 @@ class DeliveryController < ApplicationController
 
     get '/deliveries/stats' do
         @total_runs = Delivery.total_deliveries
+        @active_runs = Delivery.active_deliveries
         @municipalities = Delivery.by_municipality
         @dates = Delivery.by_date
         #view
