@@ -10,11 +10,11 @@ class Delivery < ActiveRecord::Base
     end
 
     def self.by_date #count of all deliveries grouped by date
-        Delivery.group(:date).order(date: :desc).limit(10).count
+        self.group(:date).order(date: :desc).limit(10).count
     end
 
     def self.total_deliveries #total nuamber of deliveries
-        Delivery.where(completed: true).count
+        self.where(completed: true).count
     end
 
     def self.active_deliveries #deliveries that have not been completed
