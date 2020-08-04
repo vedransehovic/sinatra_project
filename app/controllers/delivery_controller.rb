@@ -40,12 +40,12 @@ class DeliveryController < ApplicationController
             #view
             erb :'deliveries/edit'
         else
-            @error_message = "Please log in to edit a recepient!"
+            @error_message = "Please log in to edit a delivery or recepient!"
             erb :"volunteers/login"
         end 
     end
 
-    post '/deliveries/:id/complete' do
+    post '/deliveries/:id/complete' do #this process when checkbox to complete delivery is clicked
         if is_logged_in?
             delivery=Delivery.find_by_id(params[:id])
             delivery.update(completed: params[:completed])
@@ -59,7 +59,7 @@ class DeliveryController < ApplicationController
     patch '/deliveries/:id' do
         if is_logged_in?
             delivery = Delivery.find_by_id(params[:id])
-            params.delete(:_method)
+            params.delete(:_method) #doing this so the next line would work
             delivery.update(params)
             #view
             redirect '/deliveries'

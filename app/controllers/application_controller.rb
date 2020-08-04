@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
       unless is_logged_in?
         session[:error_message] = error_message
         redirect '/volunteers/login'
-        #erb :"volunteers/login"
+        #erb :"volunteers/login" - Tried this first but it didn't display the login form. rather it just displayed a message and continued executing the code. 
       end
     end
 
