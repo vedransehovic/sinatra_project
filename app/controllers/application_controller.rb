@@ -1,5 +1,5 @@
 require './config/environment'
-require 'chartkick'
+
 
 class ApplicationController < Sinatra::Base
 
